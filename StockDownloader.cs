@@ -22,14 +22,12 @@ namespace BuyStockAdviser
             _password = password;
         }
 
-        public List<TiingoItem> Download()
+        public List<StockItem> Download()
         {
-            List<TiingoItem> result = new List<TiingoItem>();
+            List<StockItem> result = new List<StockItem>();
 
             foreach(StockItem c in _symbols)
             {
-                //var startDate = DateFormatter(c.Datetime.AddDays(1));
-                //var endDate = DateFormatter(DateTime.Now);
                 var uRLrequest = string.Format(_Url, c.Symbol, DateFormatter(c.Datetime.AddDays(1)), DateFormatter(DateTime.Now));
                 try
                 {
@@ -41,6 +39,10 @@ namespace BuyStockAdviser
                         StreamReader reader = new StreamReader(dataStream);
                         var json = reader.ReadToEnd();
                         var model = JsonSerializer.Deserialize<List<TiingoItem>>(json);
+                        foreach(TiingoItem t in model)
+                        {
+                            result.Add(new StockItem { Symbol = c.Symbol, Last = t.adjClose, High = t.adjHigh, Datetime = t.date, Volume = t.adjVolume, Open = t.open });
+                        };
                     }
  
                 }

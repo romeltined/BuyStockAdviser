@@ -18,14 +18,20 @@ namespace BuyStockAdviser
             var Url = configuration["TiingoUrl"];
             var userName = configuration["UserName"];
             var password = configuration["Password"];
+            DataService dataService = new DataService();
+            //List<StockItem> stockItems = new List<StockItem>();
 
-            List<StockItem> stockItems = new List<StockItem>();
-            stockItems.Add(new StockItem { Datetime = DateTime.Parse("2020-02-13"), Symbol = "AMD" });
-            stockItems.Add(new StockItem { Datetime = DateTime.Parse("2020-01-13"), Symbol = "ACN" });
+            //TO DO:
+            var stockSymbols = dataService.GetStockSymbols(); 
+            var stockItems = dataService.GetNewStockItems(stockSymbols);
+            //stockItems.Add(new StockItem { Datetime = DateTime.Parse("2020-01-13"), Symbol = "AMD" });
+            //stockItems.Add(new StockItem { Datetime = DateTime.Parse("2020-01-13"), Symbol = "ACN" });
 
 
             StockDownloader stockDownloader = new StockDownloader(stockItems, Url, userName, password);
             var result = stockDownloader.Download();
+
+            
 
 
         }
