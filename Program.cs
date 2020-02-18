@@ -12,14 +12,11 @@ namespace BuyStockAdviser
     {
         static void Main(string[] args)
         {
-            DataServices dataServices = new DataServices();
             StockDownloader stockDownloader = new StockDownloader();
+            stockDownloader.Download();
 
-            var stockItems = dataServices.GetLatestStockItems();
-            var result = stockDownloader.Download(stockItems);
-            dataServices.AddStockItem(result);
-            
-
+            StockAnalyzer stockAnalyzer = new StockAnalyzer();
+            stockAnalyzer.Analyze();
 
         }
     }
