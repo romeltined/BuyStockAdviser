@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -10,23 +11,25 @@ namespace BuyStockAdviser
 {
     public class StockDownloader
     {
-        private List<StockItem> _symbols;
         private string _Url;
         private string _userName;
         private string _password;
-        public StockDownloader(List<StockItem> symbols, string Url, string userName, string password)
+
+        public StockDownloader()
         {
-            _symbols = symbols;
-            _Url = Url;
-            _userName = userName;
-            _password = password;
+            var builder = new ConfigurationBuilder();
+            builder.AddJsonFile("appsettings.json", optional: false);
+            var configuration = builder.Build();
+            _Url = configuration["TiingoUrl"];
+            _userName = configuration["UserName"];
+            _password = configuration["Password"];
         }
 
-        public List<StockItem> Download()
+        public List<StockItem> Download(List<StockItem> stockItems)
         {
             List<StockItem> result = new List<StockItem>();
 
-            foreach(StockItem c in _symbols)
+            foreach(StockItem c in stockItems)
             {
                 var uRLrequest = string.Format(_Url, c.Symbol, DateFormatter(c.Datetime.AddDays(1)), DateFormatter(DateTime.Now));
                 try

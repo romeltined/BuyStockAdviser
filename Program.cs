@@ -12,25 +12,12 @@ namespace BuyStockAdviser
     {
         static void Main(string[] args)
         {
-            var builder = new ConfigurationBuilder();
-            builder.AddJsonFile("appsettings.json", optional: false);
-            var configuration = builder.Build();
-            var Url = configuration["TiingoUrl"];
-            var userName = configuration["UserName"];
-            var password = configuration["Password"];
-            DataService dataService = new DataService();
-            //List<StockItem> stockItems = new List<StockItem>();
+            DataServices dataServices = new DataServices();
+            StockDownloader stockDownloader = new StockDownloader();
 
-            //TO DO:
-            var stockSymbols = dataService.GetStockSymbols(); 
-            var stockItems = dataService.GetNewStockItems(stockSymbols);
-            //stockItems.Add(new StockItem { Datetime = DateTime.Parse("2020-01-13"), Symbol = "AMD" });
-            //stockItems.Add(new StockItem { Datetime = DateTime.Parse("2020-01-13"), Symbol = "ACN" });
-
-
-            StockDownloader stockDownloader = new StockDownloader(stockItems, Url, userName, password);
-            var result = stockDownloader.Download();
-
+            var stockItems = dataServices.GetLatestStockItems();
+            var result = stockDownloader.Download(stockItems);
+            dataServices.AddStockItem(result);
             
 
 
