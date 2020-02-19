@@ -9,7 +9,7 @@ namespace BuyStockAdviser
     {
         public void Analyze()
         {
-            /*get unique symbol from stockitems
+            /*get unique symbol from stockitems where decision is null
              *loop each symbol
              *get latest record from stockitems
              * check if it has entry in stockbuydecision
@@ -20,7 +20,7 @@ namespace BuyStockAdviser
 
         }
 
-        public void AddStockBuyDecision(List<StockBuyDecision> items)
+        public void AddStockBuyDecision(List<StockItem> items)
         {
             using (var context = new BuyStockAdviserDbContextFactory().CreateDbContext())
             {

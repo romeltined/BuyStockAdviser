@@ -13,7 +13,6 @@ namespace BuyStockAdviser.Data
 
         public DbSet<StockSymbol> StockSymbols { get; set; }
         public DbSet<StockItem> StockItems { get; set; }
-        public DbSet<StockBuyDecision> StockBuyDecisions { get; set; }
 
     }
 }

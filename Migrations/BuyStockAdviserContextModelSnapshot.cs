@@ -19,7 +19,7 @@ namespace BuyStockAdviser.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BuyStockAdviser.StockBuyDecision", b =>
+            modelBuilder.Entity("BuyStockAdviser.StockItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,33 +32,6 @@ namespace BuyStockAdviser.Migrations
                     b.Property<string>("Decision")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Last")
-                        .HasColumnType("float");
-
-                    b.Property<double>("SlopeLeft")
-                        .HasColumnType("float");
-
-                    b.Property<double>("SlopeRight")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Symbol")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StockBuyDecisions");
-                });
-
-            modelBuilder.Entity("BuyStockAdviser.StockItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Datetime")
-                        .HasColumnType("datetime2");
-
                     b.Property<double>("High")
                         .HasColumnType("float");
 
@@ -66,6 +39,12 @@ namespace BuyStockAdviser.Migrations
                         .HasColumnType("float");
 
                     b.Property<double>("Open")
+                        .HasColumnType("float");
+
+                    b.Property<double>("SlopeLeft")
+                        .HasColumnType("float");
+
+                    b.Property<double>("SlopeRight")
                         .HasColumnType("float");
 
                     b.Property<string>("Symbol")

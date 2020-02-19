@@ -54,6 +54,9 @@ namespace BuyStockAdviser
         public double High { get; set; }
         public double Last { get; set; }
         public double Volume { get; set; }
+        public string Decision { get; set; }
+        public double SlopeLeft { get; set; }
+        public double SlopeRight { get; set; }
     }
 
     public class StockSymbol
@@ -63,20 +66,6 @@ namespace BuyStockAdviser
         public string Name { get; set; }
         public string Market { get; set; }
     }
-
-    public class StockBuyDecision
-    {
-        public int Id { get; set; }
-        public string Symbol { get; set; }
-        public DateTime Datetime { get; set; }
-        public string Decision { get; set; }
-        public double Last { get; set; }
-
-        public double SlopeLeft { get; set; }
-
-        public double SlopeRight { get; set; }
-    }
-
 
     public class TiingoItem
     {
