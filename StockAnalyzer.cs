@@ -129,15 +129,15 @@ namespace BuyStockAdviser
 
                     foreach (StockItem c in stockItems)
                     {
-                        writeDate = c.Datetime.ToShortDateString() + "," + writeDate;
-                        writeDecision = c.Decision + "," + writeDecision;
-                        writeLast = c.Last.ToString() + "," + writeLast;
-                        writeSymbol = c.Symbol + "," + writeSymbol;
+                        writeDate =  writeDate + c.Datetime.ToShortDateString() + ",";
+                        writeDecision =  writeDecision + c.Decision + ",";
+                        writeLast =  writeLast + c.Last.ToString() + "," ;
+                        writeSymbol = writeSymbol + c.Symbol + ",";
                     }
-                    tw.WriteLine(writeDate);
+                    tw.WriteLine(writeSymbol);
                     tw.WriteLine(writeDecision);
                     tw.WriteLine(writeLast);
-                    tw.WriteLine(writeSymbol);
+                    tw.WriteLine(writeDate);
                     tw.WriteLine("");
 
                 }
